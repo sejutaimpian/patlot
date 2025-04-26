@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@layer components {
+  #codeEditor {
+    grid-template-areas: "output output output" "label-html label-css label-js" "textarea textarea textarea";
+
+    @apply h-(--height-editor,100dvh) select-none caret-white grid grid-cols-3 grid-rows-[1fr_auto_20dvh];
+
+    & > label {
+      @apply py-1 px-2 text-center text-white bg-black;
+
+      &:has(+ #html) {
+        grid-area: label-html;
+      }
+
+      &:has(+ #css) {
+        grid-area: label-css;
+      }
+
+      &:has(+ #js) {
+        grid-area: label-js;
+      }
+
+      &.active {
+        @apply bg-amber-100 text-black font-bold;
+      }
+    }
+
+    & > textarea {
+      grid-area: textarea;
+
+      @apply py-2.5 px-5 text-white bg-slate-800 resize-none outline-none;
+    }
+
+    & > .resizer {
+      @apply hidden;
+    }
+
+    & > iframe {
+      grid-area: output;
+
+      @apply bg-white w-full h-full;
+    }
+  }
+
+  @media (min-width: 768px) {
+    #codeEditor {
+      grid-template-areas: "label-html resizer output" "textarea-html resizer output" "label-css resizer output" "textarea-css resizer output" "label-js resizer output" "textarea-js resizer output";
+
+      @apply grid-cols-[var(--left-width,1fr)_30px_1fr] grid-rows-[auto_1fr_auto_1fr_auto_1fr];
+
+      & > label {
+        @apply text-left px-[50px];
+      }
+
+      & > textarea {
+        @apply border-l-30 border-black text-lg;
+
+        &#html {
+          grid-area: textarea-html;
+        }
+
+        &#css {
+          grid-area: textarea-css;
+        }
+
+        &#js {
+          grid-area: textarea-js;
+        }
+      }
+
+      & > .resizer {
+        grid-area: resizer;
+
+        @apply block bg-black cursor-col-resize;
+      }
+    }
+  }
+}

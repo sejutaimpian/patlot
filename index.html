@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patlot - In-browser Code Editor</title>
+    <meta name="description" content="Patlot - In-browser Code Editor">
+    <meta name="keywords"
+        content="Patlot - In-browser Code Editor, code editor, in-browser editor, online code editor, online editor, code editor online, editor online, editor in browser, in-browser editor">
+    <meta name="author" content="sejutaimpian">
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="output.css">
+
+    <!-- plugin alpineJS, myScript, core alpineJS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/resize@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="script.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+
+<body>
+    <section id="codeEditor" x-data="codeEditor" x-resize.document="widthDocument = $width;">
+        <label for="html" @click="setActiveTextarea('html')" :class="printClassLabel('html')">HTML</label>
+        <textarea id="html" :class="printClassTextarea('html')" x-model.debounce.500="html"></textarea>
+
+        <label for="css" @click="setActiveTextarea('css')" :class="printClassLabel('css')">CSS</label>
+        <textarea id="css" :class="printClassTextarea('css')" x-model.debounce.500="css"></textarea>
+
+        <label for="js" @click="setActiveTextarea('js')" :class="printClassLabel('js')">JS</label>
+        <textarea id="js" :class="printClassTextarea('js')" x-model.debounce.500="js"></textarea>
+
+        <div class="resizer" @mousedown="handleMouseDown" @mouseup="isResizing = false" @mousemove="resize"
+            @mouseleave="isResizing = false"></div>
+
+        <iframe id="output"></iframe>
+    </section>
+</body>
+
+</html>
