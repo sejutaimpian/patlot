@@ -44,6 +44,16 @@ document.addEventListener("alpine:init", () => {
         output.srcdoc = fullCode;
       },
 
+      // Tab Feature
+      tab() {
+        const el = this.$el;
+        const start = el.selectionStart;
+        const end = el.selectionEnd;
+
+        el.value = el.value.slice(0, start) + "\t" + el.value.slice(end);
+        el.selectionStart = el.selectionEnd = start + 1;
+      },
+
       // Resize Feature
       isResizing: false,
       startX: 0,

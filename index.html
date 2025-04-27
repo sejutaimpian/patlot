@@ -23,13 +23,16 @@
 <body>
     <section id="codeEditor" x-data="codeEditor" x-resize.document="widthDocument = $width;">
         <label for="html" @click="setActiveTextarea('html')" :class="printClassLabel('html')">HTML</label>
-        <textarea id="html" :class="printClassTextarea('html')" x-model.debounce.500="html"></textarea>
+        <textarea id="html" :class="printClassTextarea('html')" x-model.debounce.500="html"
+            @keydown.tab.prevent="tab"></textarea>
 
         <label for="css" @click="setActiveTextarea('css')" :class="printClassLabel('css')">CSS</label>
-        <textarea id="css" :class="printClassTextarea('css')" x-model.debounce.500="css"></textarea>
+        <textarea id="css" :class="printClassTextarea('css')" x-model.debounce.500="css"
+            @keydown.tab.prevent="tab"></textarea>
 
         <label for="js" @click="setActiveTextarea('js')" :class="printClassLabel('js')">JS</label>
-        <textarea id="js" :class="printClassTextarea('js')" x-model.debounce.500="js"></textarea>
+        <textarea id="js" :class="printClassTextarea('js')" x-model.debounce.500="js"
+            @keydown.tab.prevent="tab"></textarea>
 
         <div class="resizer" @mousedown="handleMouseDown" @mouseup="isResizing = false" @mousemove="resize"
             @mouseleave="isResizing = false"></div>
