@@ -15,17 +15,15 @@ document.addEventListener("alpine:init", () => {
       widthDocument: 0,
       activeTextarea: this.$persist("html"),
       get isInMobile() {
-        return this.widthDocument < 768;
+        return window.matchMedia("(width < 48rem)").matches;
       },
       setActiveTextarea(textarea) {
         this.activeTextarea = textarea;
       },
       printClassTextarea(textarea) {
-        if (!this.isInMobile) return "";
-        return this.activeTextarea !== textarea && "hidden";
+        return this.activeTextarea === textarea && "active";
       },
       printClassLabel(textarea) {
-        if (!this.isInMobile) return "";
         return this.activeTextarea === textarea && "active";
       },
       render() {
